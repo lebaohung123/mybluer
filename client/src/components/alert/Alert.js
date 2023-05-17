@@ -1,33 +1,44 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { GLOBALTYPES } from '../../redux/actions/globalTypes'
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { GLOBALTYPES } from "../../redux/actions/globalTypes";
 
-import Loading from './Loading'
-import Toast from './Toast'
+import Loading from "./Loading";
+import Toast from "./Toast";
 
 const Notify = () => {
-    const { alert } = useSelector(state => state)
-    const dispatch = useDispatch()
+  const { alert } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-    return (
-        <div>
-            {alert.loading && <Loading />}
+  useEffect(() => {
+    if (alert.error || alert.success) {
+      const timeout = setTimeout(() => {
+        dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+      }, 3000);
 
-            {
-                alert.error && 
-                <Toast msg={{title: 'Error', body: alert.error}}
-                handleShow={() => dispatch({type: GLOBALTYPES.ALERT, payload: {}})} 
-                bgColor="bg-danger" />
-            }
+      return () => clearTimeout(timeout);
+    }
+  }, [alert.error, alert.success, dispatch]);
 
-            {
-                alert.success && 
-                <Toast msg={{title: 'Success', body: alert.success}} 
-                handleShow={() => dispatch({type: GLOBALTYPES.ALERT, payload: {}})}
-                bgColor="bg-success" />
-            }
-        </div>
-    )
-}
+  return (
+    <div>
+      {alert.loading && <Loading />}
+      {alert.error && (
+        <Toast
+          msg={{ title: "Error", body: alert.error }}
+          handleShow={() => dispatch({ type: GLOBALTYPES.ALERT, payload: {} })}
+          bgColor="bg-danger"
+        />
+      )}
 
-export default Notify
+      {alert.success && (
+        <Toast
+          msg={{ title: "Success", body: alert.success }}
+          handleShow={() => dispatch({ type: GLOBALTYPES.ALERT, payload: {} })}
+          bgColor="bg-success"
+        />
+      )}
+    </div>
+  );
+};
+
+export default Notify;
