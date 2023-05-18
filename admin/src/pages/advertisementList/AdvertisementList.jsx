@@ -100,7 +100,7 @@ export default function AdvertisementList() {
                             type="text"
                             value={searchValue}
                             onChange={event => handleSearchValue(event)}
-                            placeholder="Search by content"
+                            placeholder="Search"
                             className="searchInput"
                         />
                         <Link to="/newAdvertisiment">
