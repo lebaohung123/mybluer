@@ -52,12 +52,11 @@ export default function UserList() {
     }, [searchValue]);
 
     const columns = [
-        
-        { field: "id", headerName: "ID", width: 200 },
+        { field: "id", headerName: "ID", width: 150 },
         {
             field: "fullname",
-            headerName: "User",
-            width: 200,
+            headerName: "Full Name",
+            width: 180,
             renderCell: params => {
                 return (
                     <div className="userListUser">
@@ -74,7 +73,7 @@ export default function UserList() {
         {
             field: "username",
             headerName: "User Name",
-            width: 200,
+            width: 150,
         },
         { field: "email", headerName: "Email", width: 200 },
         {
@@ -82,11 +81,14 @@ export default function UserList() {
             headerName: "Gender",
             width: 120,
         },
-       
-        
         {
             field: "followLength",
             headerName: "Following",
+            width: 140,
+        },
+        {
+            field: "role",
+            headerName: "Role",
             width: 120,
         },
         {
@@ -108,7 +110,6 @@ export default function UserList() {
             },
         },
     ];
-
     return (
         <div className="userList">
             {loading ? (
