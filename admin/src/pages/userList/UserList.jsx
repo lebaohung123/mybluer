@@ -121,7 +121,7 @@ export default function UserList() {
                             type="text"
                             value={searchValue}
                             onChange={event => handleSeachUser(event)}
-                            placeholder="Search by username"
+                            placeholder="Search "
                             className="searchInput"
                         />
                         <Link to="/newUser">

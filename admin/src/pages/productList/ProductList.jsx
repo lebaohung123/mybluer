@@ -131,7 +131,7 @@ export default function ProductList() {
                             ref={searchInputRef}
                             value={searchValue}
                             onChange={handleSearchContent}
-                            placeholder="Search by content"
+                            placeholder="Search"
                             className="searchInput"
                         />
                         <Link to="/newpost/" id="hihi">
