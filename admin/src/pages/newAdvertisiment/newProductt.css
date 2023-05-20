@@ -2,6 +2,11 @@
   flex: 4;
 }
 
+.error{
+  font-size: 12px;
+  color: red;
+}
+
 .addProductForm {
   margin-top: 10px;
 }

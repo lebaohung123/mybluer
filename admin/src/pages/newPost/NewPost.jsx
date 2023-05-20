@@ -103,7 +103,7 @@ export default function NewPost() {
                     <span className="userUpdateTitle">Create</span>
                     <form className="userUpdateForm">
                         <div className="userUpdateLeft">
-                            <div className="addProductItem">
+                            <div className="addProductItem mleft">
                                 <label>User</label>
                                 <select
                                     name="active"

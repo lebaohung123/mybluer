@@ -14,6 +14,12 @@ export default function Advertisiment() {
     const [linkImg, setLinkImg] = useState("");
     const [timeContent, setTimeContent] = useState("");
     const [clickContent, setClickContent] = useState("");
+    const [content, setContent] = useState("");
+    const [detail, setDetail] = useState("");
+    const [link, setLink] = useState("");
+    const [time, setTime] = useState("");
+    const [count, setCount] = useState("");
+    const [errors, setErrors] = useState({});
     const history = useHistory();
 
     const handleUpImage = async images => {
@@ -56,7 +62,7 @@ export default function Advertisiment() {
             setImage(post.image);
             setTimeContent(post.time);
             setClickContent(post.click);
-            setLinkImg(post.image)
+            setLinkImg(post.image);
             console.log(post.time);
         } catch (error) {
             console.error(error);
@@ -66,6 +72,38 @@ export default function Advertisiment() {
     const handleUpdatePost = async e => {
         try {
             e.preventDefault();
+            const formErrors = {};
+
+            // Perform validation for each field
+            if (postContent.trim() === "") {
+                setContent("Content is required");
+                return;
+            }
+
+            if (detailContent.trim() === "") {
+                setDetail("Detail is required");
+                return;
+            }
+
+            if (linkContent.trim() === "") {
+                setLink("Link is required");
+                return;
+            }
+
+            if (timeContent.trim() === "") {
+                setTime("Time is required");
+                return;
+            }
+
+            if (clickContent.trim() === "") {
+                setCount("Click is required");
+                return;
+            }
+
+            if (Object.keys(formErrors).length > 0) {
+                setErrors(formErrors);
+                return;
+            }
             const url = `http://localhost:5000/api/data/advertisiment/${productId.advertisementId}/edit`;
             const data = {
                 content: postContent,
@@ -132,6 +170,11 @@ export default function Advertisiment() {
                                 className="userUpdateInput"
                                 onChange={e => setPostContent(e.target.value)}
                             />
+                            {content && (
+                                <span className="validationError">
+                                    {content}
+                                </span>
+                            )}
                         </div>
                         <div className="userUpdateItem">
                             <label>Detail Of Advertisiment</label>
@@ -141,6 +184,11 @@ export default function Advertisiment() {
                                 className="userUpdateInput"
                                 onChange={e => setDetailContent(e.target.value)}
                             />
+                            {detail && (
+                                <span className="validationError">
+                                    {detail}
+                                </span>
+                            )}
                         </div>
                         <div className="userUpdateItem">
                             <label>Link Of Advertisiment</label>
@@ -150,6 +198,9 @@ export default function Advertisiment() {
                                 className="userUpdateInput"
                                 onChange={e => setLinkContent(e.target.value)}
                             />
+                            {link && (
+                                <span className="validationError">{link}</span>
+                            )}
                         </div>
                         <div className="userUpdateItem">
                             <label>Time Of Advertisiment</label>
@@ -159,6 +210,9 @@ export default function Advertisiment() {
                                 className="userUpdateInput"
                                 onChange={e => setTimeContent(e.target.value)}
                             />
+                            {time && (
+                                <span className="validationError">{time}</span>
+                            )}
                         </div>
                         <div className="userUpdateItem">
                             <label>Cout Click Of Advertisiment</label>
@@ -168,6 +222,9 @@ export default function Advertisiment() {
                                 className="userUpdateInput"
                                 onChange={e => setClickContent(e.target.value)}
                             />
+                            {count && (
+                                <span className="validationError">{count}</span>
+                            )}
                         </div>
                     </div>
                     <div

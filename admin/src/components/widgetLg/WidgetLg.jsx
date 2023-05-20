@@ -1,7 +1,6 @@
 import "./widgetLg.css";
 
 export default function WidgetLg({ users }) {
-    console.log(users);
     return (
         <div className="widgetLg">
             <h3 className="widgetLgTitle">New Join Member</h3>

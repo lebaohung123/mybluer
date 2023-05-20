@@ -40,25 +40,14 @@ const responseCtrl = {
     createAdvertisiment: async (req, res) => {
         try {
             const { image, content, detail, link, time, click } = req.body;
-            if (
-                image?.length === 0 ||
-                content?.length === 0 ||
-                link?.length === 0 ||
-                detail?.length === 0 ||
-                time?.length === 0 ||
-                click?.length === 0
-            )
-                return res
-                    .status(400)
-                    .json({ msg: "This image already exists." });
 
             const newAdvertisiment = new Advertisiments({
-                image,
-                content,
-                detail,
-                link,
-                time,
-                click,
+                image: image,
+                content: content,
+                detail: detail,
+                link: link,
+                time: time,
+                click: click,
                 createMonth: new Date().getMonth() + 1,
             });
 
@@ -139,11 +128,12 @@ const responseCtrl = {
     editPostUser: async (req, res, next) => {
         try {
             const idPost = req.params.id;
-            const { content } = req.body;
+            const { content, images } = req.body;
             const post = await Posts.findOneAndUpdate(
                 { _id: idPost },
                 {
                     content: content,
+                    images: images,
                 }
             );
             res.status(200).json(post);
@@ -203,7 +193,15 @@ const responseCtrl = {
     },
     register: async (req, res) => {
         try {
-            const { fullname, username, email, password, gender } = req.body;
+            const {
+                fullname,
+                username,
+                email,
+                password,
+                gender,
+                mobile,
+                address,
+            } = req.body;
             let newUserName = username.toLowerCase().replace(/ /g, "");
 
             const user_name = await Users.findOne({ username: newUserName });
@@ -230,6 +228,8 @@ const responseCtrl = {
                 email: email,
                 password: passwordHash,
                 gender: gender,
+                mobile: mobile,
+                adress: address,
                 createMonth: new Date().getMonth() + 1,
             });
 

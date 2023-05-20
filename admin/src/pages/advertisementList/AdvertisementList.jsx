@@ -41,6 +41,7 @@ export default function AdvertisementList() {
 
     const handleDelete = async id => {
         try {
+            setLoading(true);
             await fetch(
                 `http://localhost:5000/api/data/advertisiment/${id}/delete`,
                 {
@@ -61,7 +62,7 @@ export default function AdvertisementList() {
     );
 
     const columns = [
-        { field: "id", headerName: "ID", width: 150  },
+        { field: "id", headerName: "ID", width: 150 },
         { field: "image", headerName: "Image", width: 150 },
         { field: "time", headerName: "Time", width: 150 },
         { field: "content", headerName: "Content", width: 150 },

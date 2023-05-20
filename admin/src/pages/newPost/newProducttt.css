@@ -2,6 +2,10 @@
   flex: 4;
 }
 
+.mleft{
+  margin-left: 20px;
+}
+
 .addProductForm {
   margin-top: 10px;
 }

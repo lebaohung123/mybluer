@@ -75,6 +75,7 @@ export default function ProductList() {
 
     const handleDelete = async id => {
         try {
+            setLoading(true);
             await fetch(`http://localhost:5000/api/data/post/${id}/delete`, {
                 method: "DELETE",
                 headers: {

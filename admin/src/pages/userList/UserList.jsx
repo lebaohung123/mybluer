@@ -4,6 +4,7 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../../components/loading/Loading";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function UserList() {
     const [data, setData] = useState([]);
@@ -15,6 +16,7 @@ export default function UserList() {
     };
 
     const handleDelete = async id => {
+        setLoading(true);
         await fetch(`http://localhost:5000/api/data/user/${id}/delete`, {
             method: "DELETE",
             headers: {

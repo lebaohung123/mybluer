@@ -7,71 +7,122 @@ export default function NewUser() {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [address, setaddress] = useState("");
     const [gender, setGender] = useState("male");
+    const [errors, setErrors] = useState({});
+
     const history = useHistory();
 
-    const handleCreateUser = async e => {
+    const handleCreateUser = async (e) => {
         e.preventDefault();
+        const formErrors = {};
+      
+        if (fullname.trim() === "") {
+          formErrors.fullname = "Full Name is required";
+        }
+      
+        if (username.trim() === "") {
+          formErrors.username = "User Name is required";
+        }
+      
+        if (email.trim() === "") {
+          formErrors.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          formErrors.email = "Invalid email address";
+        }
+      
+        if (password.trim() === "") {
+          formErrors.password = "Password is required";
+        }
+      
+        if (Object.keys(formErrors).length > 0) {
+          setErrors(formErrors);
+          return;
+        }
+      
         const dataUser = {
-            fullname: fullname,
-            email: email,
-            password: password,
-            username: username,
-            gender: gender,
+          fullname: fullname,
+          email: email,
+          password: password,
+          username: username,
+          gender: gender,
+          mobile: mobile,
+          address: address,
         };
         const url = `http://localhost:5000/api/data/user/newuser`;
         await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(dataUser),
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataUser),
         });
         history.push("/users");
-
-    };
+      };
+      
     return (
         <div className="newUser">
             <h1 className="newUserTitle">New User</h1>
             <form className="newUserForm">
                 <div className="newUserItem">
-                    <label>
-                        Full Name <span style={{ color: "red" }}>*</span>
-                    </label>
+                    <label>Full Name</label>
                     <input
                         type="text"
                         placeholder="John Smith"
                         onChange={e => setFullname(e.target.value)}
                     />
+                    {errors.fullname && (
+                        <p className="errorText">{errors.fullname}</p>
+                    )}
                 </div>
                 <div className="newUserItem">
-                    <label>
-                        User Name <span style={{ color: "red" }}>*</span>
-                    </label>
+                    <label>User Name</label>
                     <input
                         type="text"
                         placeholder="example_123"
                         onChange={e => setUsername(e.target.value)}
                     />
+                    {errors.username && (
+                        <p className="errorText">{errors.username}</p>
+                    )}
                 </div>
                 <div className="newUserItem">
-                    <label>
-                        Email <span style={{ color: "red" }}>*</span>
-                    </label>
+                    <label>Email</label>
                     <input
                         type="email"
                         placeholder="john@gmail.com"
                         onChange={e => setEmail(e.target.value)}
                     />
+                    {errors.email && (
+                        <p className="errorText">{errors.email}</p>
+                    )}
                 </div>
                 <div className="newUserItem">
-                    <label>
-                        Password <span style={{ color: "red" }}>*</span>
-                    </label>
+                    <label>Password</label>
                     <input
                         type="password"
                         placeholder="password"
                         onChange={e => setPassword(e.target.value)}
+                    />
+                    {errors.password && (
+                        <p className="errorText">{errors.password}</p>
+                    )}
+                </div>
+                <div className="newUserItem">
+                    <label>Mobile</label>
+                    <input
+                        type="text"
+                        placeholder="Number Phone"
+                        onChange={e => setMobile(e.target.value)}
+                    />
+                </div>
+                <div className="newUserItem">
+                    <label>Adress</label>
+                    <input
+                        type="text"
+                        placeholder="Adress"
+                        onChange={e => setaddress(e.target.value)}
                     />
                 </div>
                 <div className="newUserItem">

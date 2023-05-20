@@ -1,6 +1,10 @@
 .newUser {
   flex: 4;
 }
+.errorText{
+  font-size: 12px;
+  color: red;
+}
 
 .newUserForm {
   display: flex;
