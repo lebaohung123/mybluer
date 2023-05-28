@@ -76,7 +76,7 @@ export const updateProfileUser =
                 "user",
                 {
                     ...userData,
-                    avatar: avatar ? media[0].url : auth.user.avatar,
+                    avatar: avatar ? media[0].url : auth.user?.avatar,
                 },
                 auth.token
             );
@@ -88,7 +88,7 @@ export const updateProfileUser =
                     user: {
                         ...auth.user,
                         ...userData,
-                        avatar: avatar ? media[0].url : auth.user.avatar,
+                        avatar: avatar ? media[0].url : auth.user?.avatar,
                     },
                 },
             });

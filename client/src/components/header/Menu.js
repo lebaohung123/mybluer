@@ -71,7 +71,7 @@ const Menu = () => {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <Avatar src={auth.user.avatar} size="medium-avatar" />
+            <Avatar src={auth.user?.avatar} size="medium-avatar" />
           </span>
 
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">

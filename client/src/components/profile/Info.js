@@ -34,11 +34,11 @@ const Info = ({ id, auth, profile, dispatch }) => {
         <div className="info">
             {userData.map(user => (
                 <div className="info_container" key={user._id}>
-                    <Avatar src={user.avatar} size="supper-avatar" />
+                    <Avatar src={user?.avatar} size="supper-avatar" />
 
                     <div className="info_content">
                         <div className="info_content_title">
-                            <h2>{user.username}</h2>
+                            <h2>{user?.username}</h2>
                             {user._id === auth.user._id ? (
                                 <button
                                     className="btn btn-outline-info"

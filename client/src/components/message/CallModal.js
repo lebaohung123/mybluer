@@ -152,7 +152,7 @@ const CallModal = () => {
 
             dispatch({
                 type: GLOBALTYPES.ALERT, 
-                payload: {error: `The ${call.username} disconnect`} 
+                payload: {error: `The ${call?.username} disconnect`} 
             })
         })
 
@@ -188,8 +188,8 @@ const CallModal = () => {
             }} >
 
                 <div className="text-center" style={{padding: '40px 0'}} >
-                    <Avatar src={call.avatar} size="supper-avatar" />
-                    <h4>{call.username}</h4>
+                    <Avatar src={call?.avatar} size="supper-avatar" />
+                    <h4>{call?.username}</h4>
                     <h6>{call.fullname}</h6>
 
                     {

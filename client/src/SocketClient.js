@@ -92,7 +92,7 @@ const SocketClient = () => {
 
             if(notify.sound) audioRef.current.play()
             spawnNotification(
-                msg.user.username + ' ' + msg.text,
+                msg.user?.username + ' ' + msg.text,
                 msg.user.avatar,
                 msg.url,
                 'BLUER'
@@ -177,7 +177,7 @@ const SocketClient = () => {
 
     useEffect(() => {
         socket.on('userBusy', data =>{
-            dispatch({type: GLOBALTYPES.ALERT, payload: {error: `${call.username} is busy!`}})
+            dispatch({type: GLOBALTYPES.ALERT, payload: {error: `${call?.username} is busy!`}})
         })
 
         return () => socket.off('userBusy')

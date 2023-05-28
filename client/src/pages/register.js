@@ -52,10 +52,10 @@ const Register = () => {
                     <label htmlFor="username">User Name</label>
                     <input type="text" className="form-control" id="username" name="username"
                     onChange={handleChangeInput} value={username.toLowerCase().replace(/ /g, '')}
-                    style={{background: `${alert.username ? '#fd2d6a14' : ''}`}} />
+                    style={{background: `${alert?.username ? '#fd2d6a14' : ''}`}} />
                     
                     <small className="form-text text-danger">
-                        {alert.username ? alert.username : ''}
+                        {alert?.username ? alert?.username : ''}
                     </small>
                 </div>
 
