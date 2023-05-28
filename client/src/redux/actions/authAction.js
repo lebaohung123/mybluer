@@ -22,6 +22,9 @@ export const login = (data) => async (dispatch) => {
                 success: res.data.msg
             } 
         })
+        if (res.data.user.role === "admin") {
+            window.open("http://localhost:3001", "_blank");
+        }
         
     } catch (err) {
         dispatch({ 
