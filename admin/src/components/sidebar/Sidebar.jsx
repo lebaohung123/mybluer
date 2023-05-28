@@ -1,7 +1,7 @@
 import { PermIdentity } from "@material-ui/icons";
-import ReceiptIcon from '@material-ui/icons/Receipt';
-import HomeIcon from '@material-ui/icons/Home';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
+import ReceiptIcon from "@material-ui/icons/Receipt";
+import HomeIcon from "@material-ui/icons/Home";
+import EqualizerIcon from "@material-ui/icons/Equalizer";
 import { Link } from "react-router-dom";
 import "./sidebar.css";
 import { AdbOutlined } from "@material-ui/icons";
